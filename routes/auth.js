@@ -11,7 +11,7 @@ router.get('/', (req,res)=>{
     res.send("Hello Ji!");
 })
 
-router.get('/protected', (req,res)=>{
+router.get('/protected',requireLogin, (req,res)=>{
     res.send("hello user")
 })
 

@@ -4,11 +4,6 @@ const app= express();
 const PORT = 5000
 const mongoose = require('mongoose');
 const {MONGODB} = require('./keys');
-require('./model/user');
-
-app.use(express.json());
-app.use(require('./routes/auth'));
-
 
 const customMiddleware = (req,res,next) => {
     console.log("Middleware is Running in between.");
@@ -25,6 +20,12 @@ mongoose.connection.on('error', (err) => {
     console.log('error', err);
 })
 
+require('./model/user');
+require('./model/post');
+
+app.use(express.json());
+app.use(require('./routes/auth'));
+app.use(require('./routes/post'));
 
 // app.get('/', (req,res)=>{
 //     console.log("Home Page");
